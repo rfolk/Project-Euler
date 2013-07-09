@@ -2,6 +2,7 @@
 
 # Russell Folk
 # November 30, 2012
+# July 9, 2013 — Optimized
 # Project Euler #4
 # Find the largest palindrome made from the product of two 3-digit numbers.
 
@@ -23,10 +24,10 @@ value1 = value2 = palindrome = 0
 
 start = time.perf_counter()
 
-for i in range ( 100 , 1000 ) :
-  for j in range ( 100 , 1000 ) :
-    if isPalindrome ( i * j ) :
-      if ( i * j ) > palindrome :
+for i in range ( 999 , 99 , -1 ) :
+  for j in range ( 999 , 99 , -1 ) :
+    if ( i * j ) > palindrome :
+      if isPalindrome ( i * j ) :
         palindrome = i * j
         value1 = i
         value2 = j
