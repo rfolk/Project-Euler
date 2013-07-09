@@ -20,12 +20,17 @@ def isPalindrome ( n ) :
     original    = int ( original / 10 )
   return ( palindrome == n )
 
-value1 = value2 = palindrome = 0
+value1 = value2 = 99
+palindrome = 0
 
 start = time.perf_counter()
 
 for i in range ( 999 , 99 , -1 ) :
+  if i < value1 and i < value2 :
+    break
   for j in range ( 999 , 99 , -1 ) :
+    if j < value1 and j < value2 :
+      break
     if ( i * j ) > palindrome :
       if isPalindrome ( i * j ) :
         palindrome = i * j
