@@ -22,38 +22,40 @@ ceiling = 1000001
 head    = -1
 length  = -1
 
+def nextChain ( n ) :
+  if n == 1 :
+    return 1
+  if n < 3 * ceiling and chains [ n ] != 0 :
+    return chains [ n ] + 1
+  current = -1
+  if n % 2 == 0 :
+    current = nextChain ( int ( n / 2 ) )
+  else :
+    current = nextChain ( 3 * n + 1 )
+  if n < 3 * ceiling :
+    chains [ n ] = current + 1
+    return chains [ n ]
+  else :
+    return current + 1
+
 start = time.perf_counter()
 
 # This will initialize found chains from any location to 0
-for i in range ( ceiling ) :
+for i in range ( 3 * ceiling ) :
   chains.append ( 0 )
 
 chains [ 1 ] = 1
 
-print ( len ( chains ) )
-
 for i in range ( 2 , ceiling , 1 ) :
-  thisLength  = 1
   thisHead    = i
-  current     = i
-  while current != 1 :
-    if current >= ceiling :
-      print ( "What do you know??!" )
-    if current < ceiling and chains [ current ] != 0 :
-      chains [ thisHead ] = chains [ current ] + thisLength
-      current = 1
-    else :
-      if current % 2 == 0 :
-        current = int ( current / 2 )
-      else :
-        current = 3 * current + 1
-      thisLength += 1
-  if chains [ thisHead ] == 0 :
-    chains [ thisHead ] == thisLength
+  thisLength  =  nextChain ( i )
+
+  #if chains [ thisHead ] == 0 :
+  #  chains [ thisHead ] == thisLength
   if thisLength > length :
     length  = thisLength
     head    = thisHead
-  print ( "Working on: " + str ( i ) )
+  #print ( "Working on: " + str ( i ) )
 
 elapsed = ( time.perf_counter() - start )
 
