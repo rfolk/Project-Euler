@@ -9,7 +9,9 @@ def isPrime ( n ) :
   '''
     Returns true if the number n is prime else false
   '''
-  for i in range ( 2 , n - 1 ) :
+  if ( n % 2 == 0 ) :
+    return False
+  for i in range ( 3 , n - 1 , 2 ) :
     if ( n % i == 0 ) :
       return False
   return True
@@ -18,7 +20,7 @@ goal  = 600851475143
 stop  = int ( goal ** 0.5 )
 prime = 2
 
-for n in range ( 2 , stop ) :
+for n in range ( 3 , stop , 2 ) :
   if goal % n == 0 :
     if isPrime ( n ) :
       prime = n
